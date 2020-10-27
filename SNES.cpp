@@ -104,7 +104,10 @@ void SNESController::update()
  * returns the data from the last time the controller was updated in the form of
  * 12 bits, where each bit represents a button.
  */ 
-long SNESController::getData();
+long SNESController::getData()
+{
+	return _controllerData;
+}
 
 
 /*
