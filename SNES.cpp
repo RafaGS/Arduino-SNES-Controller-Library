@@ -10,9 +10,9 @@
  * pinout for SNES controller is as follows:
  * 
  * ┌────────────────┬───────────\
- * │  O   O   O   O │ O   O   O  )
+ * │	O	 O	 O	 O │ O	 O	 O	)
  * └────────────────┴───────────/
- *    1   2   3   4   5   6   7
+ *		1	 2	 3	 4	 5	 6	 7
  * 
  * 1 => 5V
  * 2 => Clock
@@ -46,7 +46,7 @@
 	* 
 	* Params:
 	* clock = Arduino pin at where clock is connected (see pinout)
-	* data  = Arduino pin at where data is connected (see pinout)
+	* data	= Arduino pin at where data is connected (see pinout)
 	* latch = Arduino pin at where latch is connected (see pinout)
 	*/
 SNESController::SNESController(int clockPin, int dataPin, int latchPin)
@@ -64,40 +64,71 @@ SNESController::SNESController(int clockPin, int dataPin, int latchPin)
 
 
 /*
-	* reads the controller
-	*/
-void SNESController::update();
+ * reads the controller
+ */
+void SNESController::update()
+{
+	// briefly pull latch high to signal data coming in
+	digitalWrite(_latchPin, HIGH);
+	delayMicroseconds(12);
+	digitalWrite(_latchPin, LOW);
+	
+
+	int currentButton;
+
+	//initialize controller data as zero ()
+	_controllerData = 0;
+	
+	for (int i = 0; i < 12; i++)
+	{
+		// after falling edge of clock pulse, read data pin
+		digitalWrite(_clockPin, LOW);
+		delayMicroseconds(0.2);
+		
+		// 0 Indicates button pressed for SNES controller
+		currentButton = digitalRead(_dataPin);
+
+		// if button is pressed, update controllerData 
+		if (!temp)
+		{
+			_controllerData = _controllerData | ((long)1 << i);
+		}
+
+		// rising edge of clock pulse
+		digitalWrite(_clockPin, HIGH);
+	}
+}
 
 
 /*
-	* returns the data from the last time the controller was updated in the form of
-	* 12 bits, where each bit represents a button.
-	*/ 
+ * returns the data from the last time the controller was updated in the form of
+ * 12 bits, where each bit represents a button.
+ */ 
 long SNESController::getData();
 
 
 /*
-	* returns true if the given button is pressed, false otherwise
-	* 
-	* Params:
-	* button = the button to check
-	*/
+ * returns true if the given button is pressed, false otherwise
+ * 
+ * Params:
+ * button = the button to check
+ */
 bool SNESController::pressed(int button);
 
 
 /*
-	* returns true if all of the buttons in the array have been pressed
-	* 
-	* Params:
-	* buttons = the buttons to check
-	*/
+ * returns true if all of the buttons in the array have been pressed
+ * 
+ * Params:
+ * buttons = the buttons to check
+ */
 bool SNESController::andPressed(int buttons[]);
 
 
 /*
-	* returns true if only one of the buttons in the array have been pressed
-	* 
-	* Params:
-	* button = the buttons to check
-	*/
+ * returns true if only one of the buttons in the array have been pressed
+ * 
+ * Params:
+ * button = the buttons to check
+ */
 bool SNESController::andPressed(int buttons[]);
