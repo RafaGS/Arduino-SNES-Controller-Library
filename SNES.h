@@ -101,7 +101,7 @@ public:
 	 * Params:
 	 * button = the buttons to check
 	 */
-	bool andPressed(int buttons[]);
+	bool orPressed(int buttons[]);
 
 private:
 	

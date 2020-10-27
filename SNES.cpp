@@ -116,7 +116,10 @@ long SNESController::getData()
  * Params:
  * button = the button to check
  */
-bool SNESController::pressed(int button);
+bool SNESController::pressed(int button)
+{
+	return _controllerData & button;
+}
 
 
 /*
@@ -125,7 +128,17 @@ bool SNESController::pressed(int button);
  * Params:
  * buttons = the buttons to check
  */
-bool SNESController::andPressed(int buttons[]);
+bool SNESController::andPressed(int buttons[])
+{
+	for (int b: buttons)
+	{
+		if (!(_controllerData & button))
+		{
+			return false;
+		}
+	}
+	return true;
+}
 
 
 /*
@@ -134,4 +147,15 @@ bool SNESController::andPressed(int buttons[]);
  * Params:
  * button = the buttons to check
  */
-bool SNESController::andPressed(int buttons[]);
+bool SNESController::orPressed(int buttons[])
+{
+	for (int b: buttons)
+	{
+		if (_controllerData & button)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+}
