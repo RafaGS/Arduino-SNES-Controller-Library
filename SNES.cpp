@@ -36,3 +36,29 @@
  * 
  */
 
+
+#include "SNES.h";
+#include "Arduino.h";
+
+
+/*
+	* Instantiates a SNES controller with the given pins
+	* 
+	* Params:
+	* clock = Arduino pin at where clock is connected (see pinout)
+	* data  = Arduino pin at where data is connected (see pinout)
+	* latch = Arduino pin at where latch is connected (see pinout)
+	*/
+SNESController::SNESController(int clockPin, int dataPin, int latchPin)
+{
+	// set instance variables
+	_clockPin = clockPin;
+	_dataPin = dataPin;
+	_latchPin = latchPin;
+
+	// set pins
+	pinMode(_latchPin, OUTPUT);
+	pinMode(_clockPin, OUTPUT); 
+	pinMode(_dataPin, INPUT);
+}
+
