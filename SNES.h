@@ -66,7 +66,7 @@ public:
 	 * data  = Arduino pin at where data is connected (see pinout)
 	 * latch = Arduino pin at where latch is connected (see pinout)
 	 */
-	SNESController(int clock, int data, int latch);
+	SNESController(int clockPin, int dataPin, int latchPin);
 
 	/*
 	 * reads the controller
@@ -106,14 +106,14 @@ public:
 private:
 	
 	// serial clock for controller
-	int clockPin;
+	int _clockPin;
 
 	// controller serial data output
-	int dataPin;
+	int _dataPin;
 
 	// latch pin pulled high to signify when new data is coming in
-	int latchPin;
+	int _latchPin;
 
 	// the data from the last time the controller was read
-	long controllerData;
+	long _controllerData;
 };
