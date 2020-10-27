@@ -62,3 +62,42 @@ SNESController::SNESController(int clockPin, int dataPin, int latchPin)
 	pinMode(_dataPin, INPUT);
 }
 
+
+/*
+	* reads the controller
+	*/
+void SNESController::update();
+
+
+/*
+	* returns the data from the last time the controller was updated in the form of
+	* 12 bits, where each bit represents a button.
+	*/ 
+long SNESController::getData();
+
+
+/*
+	* returns true if the given button is pressed, false otherwise
+	* 
+	* Params:
+	* button = the button to check
+	*/
+bool SNESController::pressed(int button);
+
+
+/*
+	* returns true if all of the buttons in the array have been pressed
+	* 
+	* Params:
+	* buttons = the buttons to check
+	*/
+bool SNESController::andPressed(int buttons[]);
+
+
+/*
+	* returns true if only one of the buttons in the array have been pressed
+	* 
+	* Params:
+	* button = the buttons to check
+	*/
+bool SNESController::andPressed(int buttons[]);
