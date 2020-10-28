@@ -69,6 +69,11 @@ public:
 	SNESController(int clockPin, int dataPin, int latchPin);
 
 	/*
+	* initializes the SNES controller by setting up pins
+	*/
+	void initialize();
+
+	/*
 	 * reads the controller
 	 */
 	void update();

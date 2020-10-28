@@ -55,7 +55,14 @@ SNESController::SNESController(int clockPin, int dataPin, int latchPin)
 	_clockPin = clockPin;
 	_dataPin = dataPin;
 	_latchPin = latchPin;
+}
 
+
+/*
+ * initializes the SNES controller by setting up pins
+ */
+void SNESController::initialize()
+{
 	// set pins
 	pinMode(_latchPin, OUTPUT);
 	pinMode(_clockPin, OUTPUT); 
