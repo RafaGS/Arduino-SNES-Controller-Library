@@ -31,13 +31,46 @@
 
 #include "SNES.h";
 
+// pins
+const int CLOCK = 4;
+const int LATCH = 5;
+const int DATA  = 4;
+
+// SNES controller object
+SNESController snes(CLOCK, LATCH, DATA);
+
+// the input from the controller
+long input;
+
+// all of the buttons
+const int BUTTONS[] = { SNES_A_BUTTON,	SNES_B_BUTTON,   SNES_X_BUTTON,		SNES_Y_BUTTON,
+						SNES_L_BUTTON,	SNES_R_BUTTON,   SNES_DPAD_UP,		SNES_DPAD_DOWN,
+						SNES_DPAD_LEFT, SNES_DPAD_RIGHT, SNES_START_BUTTON, SNES_SELECT_BUTTON };
+
+// the corresponding names of the buttons
+const char* NAMES[] = { "A", "B", "X", "Y" 
+						"L", "R", "up", "down"
+						"left", "right", "select", "start" };
+
 void setup()
 {
 	Serial.begin(9600);
 
+	snes.initialize();
 }
 
 void loop()
 {
-
+	snes.update();
+	while (snes.orPressed(BUTTONS))
+	{
+		for (int i = 0; i < 12, i++)
+		{
+			if (snes.pressed())
+			{
+				Serial.print(NAMES[i] + ", ");
+			}
+		}
+		Serial.print("\n");
+	}
 }
