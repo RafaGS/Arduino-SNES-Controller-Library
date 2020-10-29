@@ -96,7 +96,7 @@ void SNESController::update()
 		currentButton = digitalRead(_dataPin);
 
 		// if button is pressed, update controllerData 
-		if (!temp)
+		if (!currentButton)
 		{
 			_controllerData = _controllerData | ((long)1 << i);
 		}
@@ -139,7 +139,7 @@ bool SNESController::andPressed(int buttons[])
 {
 	for (int b: buttons)
 	{
-		if (!(_controllerData & button))
+		if (!(_controllerData & b))
 		{
 			return false;
 		}
@@ -158,7 +158,7 @@ bool SNESController::orPressed(int buttons[])
 {
 	for (int b: buttons)
 	{
-		if (_controllerData & button)
+		if (_controllerData & b)
 		{
 			return true;
 		}
