@@ -90,7 +90,7 @@ public:
 	 * Params:
 	 * button = the button to check
 	 */
-	bool pressed(int button);
+	bool pressed(long button);
 
 	/*
 	 * returns true if all of the buttons in the array have been pressed
@@ -98,7 +98,7 @@ public:
 	 * Params:
 	 * buttons = the buttons to check
 	 */
-	bool andPressed(int buttons[]);
+	bool andPressed(long buttons[]);
 
 	/*
 	 * returns true if only one of the buttons in the array have been pressed
@@ -106,7 +106,7 @@ public:
 	 * Params:
 	 * button = the buttons to check
 	 */
-	bool orPressed(int buttons[]);
+	bool orPressed(long buttons[]);
 
 private:
 	

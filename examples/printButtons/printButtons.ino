@@ -1,5 +1,5 @@
-﻿/*
- * printButtons.ino
+﻿/* 
+ *  printButtons.ino
  * 
  * prints all of the buttons that are pressed into the serial monitor.
  * 
@@ -32,25 +32,25 @@
 #include "SNES.h";
 
 // pins
-const int CLOCK = 4;
-const int LATCH = 5;
-const int DATA  = 4;
+const int CLOCK = 7;
+const int LATCH = 8;
+const int DATA  = 9;
 
 // SNES controller object
-SNESController snes(CLOCK, LATCH, DATA);
+SNESController snes(CLOCK, DATA, LATCH);
 
 // the input from the controller
 long input;
 
 // all of the buttons
-const int BUTTONS[] = { SNES_A_BUTTON,	SNES_B_BUTTON,   SNES_X_BUTTON,		SNES_Y_BUTTON,
+const long BUTTONS[] = { SNES_A_BUTTON,	SNES_B_BUTTON,   SNES_X_BUTTON,		SNES_Y_BUTTON,
 						SNES_L_BUTTON,	SNES_R_BUTTON,   SNES_DPAD_UP,		SNES_DPAD_DOWN,
 						SNES_DPAD_LEFT, SNES_DPAD_RIGHT, SNES_START_BUTTON, SNES_SELECT_BUTTON };
 
 // the corresponding names of the buttons
-const char* NAMES[] = { "A", "B", "X", "Y" 
-						"L", "R", "up", "down"
-						"left", "right", "select", "start" };
+const char* NAMES[] = { "A", "B", "X", "Y", 
+						"L", "R", "up", "down",
+						"left", "right", "start", "select" };
 
 void setup()
 {
@@ -62,15 +62,13 @@ void setup()
 void loop()
 {
 	snes.update();
-	while (snes.orPressed(BUTTONS))
+	for (int i = 0; i < 12; i++)
 	{
-		for (int i = 0; i < 12, i++)
+		if (snes.pressed(BUTTONS[i]))
 		{
-			if (snes.pressed())
-			{
-				Serial.print(NAMES[i] + ", ");
-			}
+			Serial.print(NAMES[i]);
+      Serial.print(", ");
 		}
-		Serial.print("\n");
 	}
+	Serial.print("\n");
 }

@@ -79,11 +79,10 @@ void SNESController::update()
 	digitalWrite(_latchPin, HIGH);
 	delayMicroseconds(12);
 	digitalWrite(_latchPin, LOW);
-	
 
-	int currentButton;
+	int currentButton = 0;
 
-	//initialize controller data as zero ()
+	//initialize controller data as zero
 	_controllerData = 0;
 	
 	for (int i = 0; i < 12; i++)
@@ -95,7 +94,7 @@ void SNESController::update()
 		// 0 Indicates button pressed for SNES controller
 		currentButton = digitalRead(_dataPin);
 
-		// if button is pressed, update controllerData 
+		// if button is pressed, update _controllerData 
 		if (!currentButton)
 		{
 			_controllerData = _controllerData | ((long)1 << i);
@@ -123,7 +122,7 @@ long SNESController::getData()
  * Params:
  * button = the button to check
  */
-bool SNESController::pressed(int button)
+bool SNESController::pressed(long button)
 {
 	return _controllerData & button;
 }
@@ -135,11 +134,11 @@ bool SNESController::pressed(int button)
  * Params:
  * buttons = the buttons to check
  */
-bool SNESController::andPressed(int buttons[])
+bool SNESController::andPressed(long buttons[])
 {
-	for (int b: buttons)
+	for (int i = 0; i < sizeof(buttons); i++)
 	{
-		if (!(_controllerData & b))
+		if (!(_controllerData & buttons[i]))
 		{
 			return false;
 		}
@@ -154,15 +153,14 @@ bool SNESController::andPressed(int buttons[])
  * Params:
  * button = the buttons to check
  */
-bool SNESController::orPressed(int buttons[])
+bool SNESController::orPressed(long buttons[])
 {
-	for (int b: buttons)
+	for (int i = 0; i < sizeof(buttons); i++)
 	{
-		if (_controllerData & b)
+		if (_controllerData & buttons[i])
 		{
 			return true;
 		}
 	}
 	return false;
-}
 }
