@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  *  printButtons.ino
  * 
  * prints all of the buttons that are pressed into the serial monitor.
@@ -9,9 +9,9 @@
  * 
  * pinout for SNES controller is as follows:
  * 
- * ┌────────────────┬───────────\
- * │  O   O   O   O │ O   O   O  )
- * └────────────────┴───────────/
+ * -----------------------------\
+ * |  O   O   O   O | O   O   O  )
+ * -----------------------------/
  *    1   2   3   4   5   6   7
  * 
  * 1 => 5V
