@@ -3,7 +3,7 @@
  * 
  * Header file for SNES Controller library
  * 
- * Author: Kyle Mitard
+ * Author: Kyle M
  * Created 26 Oct 2020
  * 
  * 
@@ -53,6 +53,9 @@
 #define SNES_X_BUTTON		0x0200
 #define SNES_L_BUTTON		0x0400
 #define SNES_R_BUTTON		0x0800
+
+// the number of buttons on the SNES controller
+#define SNES_NUM_BUTTONS 12
 
 
 class SNESController

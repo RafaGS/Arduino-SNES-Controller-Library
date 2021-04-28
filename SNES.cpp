@@ -3,7 +3,7 @@
  * 
  * Arduino library for reading an SNES Controller
  * 
- * Author: Kyle Mitard
+ * Author: Kyle M
  * Created 26 Oct 2020
  * 
  * 
