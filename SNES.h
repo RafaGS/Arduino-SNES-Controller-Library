@@ -85,7 +85,7 @@ public:
 	 * returns the data from the last time the controller was updated in the form of
 	 * 12 bits, where each bit represents a button.
 	 */ 
-	long getData();
+	uint16_t getData();
 
 	/*
 	 * returns true if the given button is pressed, false otherwise
@@ -93,7 +93,7 @@ public:
 	 * Params:
 	 * button = the button to check
 	 */
-	bool pressed(long button);
+	bool pressed(uint16_t button);
 
 	/*
 	 * returns true if all of the buttons in the array have been pressed
@@ -101,7 +101,7 @@ public:
 	 * Params:
 	 * buttons = the buttons to check
 	 */
-	bool andPressed(long buttons[]);
+	bool andPressed(uint16_t buttons[]);
 
 	/*
 	 * returns true if only one of the buttons in the array have been pressed
@@ -109,7 +109,7 @@ public:
 	 * Params:
 	 * button = the buttons to check
 	 */
-	bool orPressed(long buttons[]);
+	bool orPressed(uint16_t buttons[]);
 
 private:
 	
@@ -123,5 +123,5 @@ private:
 	int _latchPin;
 
 	// the data from the last time the controller was read
-	long _controllerData;
+	uint16_t _controllerData;
 };
