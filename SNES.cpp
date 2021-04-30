@@ -110,7 +110,7 @@ void SNESController::update()
  * returns the data from the last time the controller was updated in the form of
  * 12 bits, where each bit represents a button.
  */ 
-long SNESController::getData()
+uint16_t SNESController::getData()
 {
 	return _controllerData;
 }
@@ -122,7 +122,7 @@ long SNESController::getData()
  * Params:
  * button = the button to check
  */
-bool SNESController::pressed(long button)
+bool SNESController::pressed(uint16_t button)
 {
 	return _controllerData & button;
 }
@@ -134,7 +134,7 @@ bool SNESController::pressed(long button)
  * Params:
  * buttons = the buttons to check
  */
-bool SNESController::andPressed(long buttons[])
+bool SNESController::andPressed(uint16_t buttons[])
 {
 	for (int i = 0; i < sizeof(buttons); i++)
 	{
@@ -153,7 +153,7 @@ bool SNESController::andPressed(long buttons[])
  * Params:
  * button = the buttons to check
  */
-bool SNESController::orPressed(long buttons[])
+bool SNESController::orPressed(uint16_t buttons[])
 {
 	for (int i = 0; i < sizeof(buttons); i++)
 	{
