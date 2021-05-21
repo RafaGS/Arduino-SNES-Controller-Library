@@ -3,7 +3,7 @@
  * 
  * prints all of the buttons that are pressed into the serial monitor.
  * 
- * Author: Kyle Mitard
+ * Author: Kyle M
  * Created 26 Oct 2020
  * 
  * 
@@ -39,28 +39,22 @@ const int DATA  = 9;
 // SNES controller object
 SNESController snes(CLOCK, DATA, LATCH);
 
-// the input from the controller
-long input;
-
 // all of the buttons
-const long BUTTONS[] = { SNES_A_BUTTON,	SNES_B_BUTTON,   SNES_X_BUTTON,		SNES_Y_BUTTON,
-						SNES_L_BUTTON,	SNES_R_BUTTON,   SNES_DPAD_UP,		SNES_DPAD_DOWN,
-						SNES_DPAD_LEFT, SNES_DPAD_RIGHT, SNES_START_BUTTON, SNES_SELECT_BUTTON };
+const uint16_t BUTTONS[] = { SNES_A_BUTTON,	SNES_B_BUTTON,   SNES_X_BUTTON,		SNES_Y_BUTTON,
+							SNES_L_BUTTON,	SNES_R_BUTTON,   SNES_DPAD_UP,		SNES_DPAD_DOWN,
+							SNES_DPAD_LEFT, SNES_DPAD_RIGHT, SNES_START_BUTTON, SNES_SELECT_BUTTON };
 
 // the corresponding names of the buttons
 const char* NAMES[] = { "A", "B", "X", "Y", 
 						"L", "R", "up", "down",
 						"left", "right", "start", "select" };
 
-void setup()
-{
+void setup() {
 	Serial.begin(9600);
-
 	snes.initialize();
 }
 
-void loop()
-{
+void loop() {
 	snes.update();
 	for (int i = 0; i < 12; i++)
 	{

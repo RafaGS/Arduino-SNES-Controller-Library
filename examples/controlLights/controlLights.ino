@@ -6,7 +6,7 @@
  * 		- press and hold any direction on the D-pad to turn on an LED on pin 5 (OR_PIN)
  * 
  * 
- * Author: Kyle Mitard
+ * Author: Kyle M
  * Created 28 Oct 2020
  * 
  * 
@@ -45,11 +45,10 @@ const int OR_PIN  = 5;
 // SNES controller object
 SNESController snes(CLOCK, DATA, LATCH);
 
-const long AND_BUTTONS[] = {SNES_A_BUTTON, SNES_B_BUTTON};
-const long OR_BUTTONS[] = {SNES_DPAD_UP, SNES_DPAD_DOWN, SNES_DPAD_LEFT, SNES_DPAD_RIGHT};
+const uint16_t AND_BUTTONS[] = {SNES_A_BUTTON, SNES_B_BUTTON};
+const uint16_t OR_BUTTONS[] = {SNES_DPAD_UP, SNES_DPAD_DOWN, SNES_DPAD_LEFT, SNES_DPAD_RIGHT};
 
-void setup()
-{
+void setup() {
 	// setup pins for LEDs
 	pinMode(AND_PIN, OUTPUT);
 	pinMode(OR_PIN, OUTPUT);
@@ -58,28 +57,21 @@ void setup()
 	snes.initialize();
 }
 
-void loop()
-{
+void loop() {
+
 	// read the controller
 	snes.update();
 
 	// check if both A and B are pressed, and update LED accordingly
 	if (snes.andPressed(AND_BUTTONS))
-	{
 		digitalWrite(AND_PIN, HIGH);
-	}
 	else
-	{
 		digitalWrite(AND_PIN, LOW);
-	}
+	
 	
 	// check if any of the dpad buttons are pressed, and update LED accordingly
 	if (snes.orPressed(OR_BUTTONS))
-	{
 		digitalWrite(OR_PIN, HIGH);
-	}
 	else
-	{
 		digitalWrite(OR_PIN, LOW);
-	}
 }

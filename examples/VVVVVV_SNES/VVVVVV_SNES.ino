@@ -11,7 +11,7 @@
  *  Left  | Left  | Move Left
  *  Right | Right | Move Right
  * 
- * Author: Kyle Mitard
+ * Author: Kyle M
  * Created 30 Oct 2020
  * 
  * pinout for SNES controller is as follows:
@@ -51,68 +51,48 @@ SNESController snes(CLOCK, DATA, LATCH);
 const int KILL_SWITCH = 13;
 
 
-void setup()
-{
+void setup() {
 	snes.initialize();
 	Keyboard.begin();
 	pinMode(KILL_SWITCH, INPUT_PULLUP);
 }
 
-void loop() 
-{
+
+void loop() {
+
 	// check for the kill switch before doing anything
-	if (digitalRead(KILL_SWITCH) == LOW)
-	{
+	if (digitalRead(KILL_SWITCH) == LOW) {
+
 		snes.update();
 
-        
-        if (snes.pressed(SNES_DPAD_LEFT))
-        {
-            Keyboard.press(KEY_LEFT_ARROW);
-        }
-        else
-        {
-            Keyboard.release(KEY_LEFT_ARROW);
-        }
 
-        
-        if (snes.pressed(SNES_DPAD_RIGHT))
-        {
-            Keyboard.press(KEY_RIGHT_ARROW);
-        }
-        else
-        {
-            Keyboard.release(KEY_RIGHT_ARROW);
-        }
+		if (snes.pressed(SNES_DPAD_LEFT))
+			Keyboard.press(KEY_LEFT_ARROW);
+		else
+			Keyboard.release(KEY_LEFT_ARROW);
 
 
-        if (snes.pressed(SNES_START_BUTTON))
-        {
-            Keyboard.press(KEY_ESC);
-        }
-        else
-        {
-            Keyboard.release(KEY_ESC);
-        }
+		if (snes.pressed(SNES_DPAD_RIGHT))
+			Keyboard.press(KEY_RIGHT_ARROW);
+		else
+			Keyboard.release(KEY_RIGHT_ARROW);
 
-        
-        if (snes.pressed(SNES_B_BUTTON))
-        {
-            Keyboard.press('z');
-        }
-        else
-        {
-            Keyboard.release('z');
-        }
 
-        
-        if (snes.pressed(SNES_X_BUTTON))
-        {
-            Keyboard.press(KEY_RETURN);
-        }
-        else
-        {
-            Keyboard.release(KEY_RETURN);
-        }
+		if (snes.pressed(SNES_START_BUTTON))
+			Keyboard.press(KEY_ESC);
+		else
+			Keyboard.release(KEY_ESC);
+
+
+		if (snes.pressed(SNES_B_BUTTON))
+			Keyboard.press('z');
+		else
+			Keyboard.release('z');
+
+
+		if (snes.pressed(SNES_X_BUTTON))
+			Keyboard.press(KEY_RETURN);
+		else
+			Keyboard.release(KEY_RETURN);
 	}
 }
