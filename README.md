@@ -1,14 +1,13 @@
 # Arduino SNES Controller Library
 
-A library that allows you to connect SNES controllers to an Arduino.
+Se trata de una librería que permite conectar mandos de SNES a un Arduino.
 
-This project is heavily based on a sketch I found on [this post on Hackaday.io.](https://hackaday.io/project/7498-snes-controller-arduino-adapter) I originially modified it to play PC games such as Celeste, VVVVVV, and Cuphead with a genuine SNES controller and an Arduino Leonardo, except it was finnicky and hard to understand. In addition, the high-level structure of the library is inspired by the [PSX Library](https://playground.arduino.cc/Main/PSXLibrary/) which I had also used to play PC games.
+El autor original de esta librería se basó en un sketch encontrado en Hackaday.io (https://hackaday.io/project/7498-snes-controller-arduino-adapter).
 
-If you don't know how to install an Arduino library, refer to [this guide](https://www.arduino.cc/en/pmwiki.php?n=Guide/Libraries) for more information. Their explanation is better than anything I can possibly write.
+Para su instalación basta con copiarlo a ~/Arduino/libraries
 
-## Wiring
-
-The SNES controller port has 7 pins, 5 of which are used (see below). You can stick wires in to the pins, but getting a good connection is *really* hard. Your best bet to getting a good connection is to cut the cable and solder jumper leads. (If you're like me and don't want to mutilate genuine hardware, you can buy a knockoff extension cord)
+## Cableado
+El conector del controlador SNES tiene 7 pines, de los cuales se utilizan 5 (ver figura). El mejor modo de conectarlo es mediante un conector hembra fácilmente encontrable en Internet.
 
 ![image](pinout.png)
 
