@@ -5,6 +5,7 @@
  * 
  * Author: Kyle M
  * Created 26 Oct 2020
+ * Minor changes by RafaG
  * 
  * 
  * pinout for SNES controller is as follows:
@@ -36,10 +37,8 @@
  * 
  */
 
-
-#include "SNES.h";
-#include "Arduino.h";
-
+#include <Arduino.h>
+#include "SNES.h
 
 /*
 	* Instantiates a SNES controller with the given pins
