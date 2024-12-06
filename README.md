@@ -11,7 +11,7 @@ El conector del controlador SNES tiene 7 pines, de los cuales se utilizan 5 (ver
 
 ![image](pinout.png)
 
-## Example Usage
+## Ejemplo de uso
 ```cpp
 #include <SNES.h>
 
